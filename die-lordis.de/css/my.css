@@ -3,4 +3,17 @@ body {
     line-height: 1.6;
     font-weight: 400;
     font-family: sans-serif;
-    color: #222; }
+    color: #222; 
+}
+
+a.navitem {
+    text-decoration: underline;
+    color:#222;
+}
+
+a.navitem:hover {
+    text-decoration: underline;
+    
+    color:rgb(0, 0, 0);
+}
+
