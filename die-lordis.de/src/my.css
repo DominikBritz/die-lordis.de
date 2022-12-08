@@ -10,6 +10,8 @@ body {
 body a.navitem {
     text-decoration: underline;
     color:#eee;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 a.navitem:hover {
@@ -18,6 +20,19 @@ a.navitem:hover {
     color:rgb(255,255,255);
 }
 
+a.button {
+    text-decoration: none;
+    color: #eee;
+}
+
 .center-text {
     text-align: center;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+.ml-20 {
+    margin-left: 5px;
 }
