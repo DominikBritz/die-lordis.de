@@ -1,38 +1,11 @@
-body {
-    font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
-    line-height: 1.6;
-    font-weight: 400;
-    font-family: sans-serif,Arial, Helvetica;
-    color: #eee;
-    background: #121212;
+:root {
+    --bs-body-bg: #121212;
+    --bs-body-color: #eee;
+    --bs-font-sans-serif: "sans-serif","Arial","Helvetica";
 }
 
-body a.navitem {
-    text-decoration: underline;
-    color:#eee;
-    white-space: nowrap;
-    overflow: hidden;
+.navbar {
+    --bs-navbar-color: #eee;
+    --bs-navbar-hover-color: #fff;
 }
 
-a.navitem:hover {
-    text-decoration: underline;
-    
-    color:rgb(255,255,255);
-}
-
-a.button {
-    text-decoration: none;
-    color: #eee;
-}
-
-.center-text {
-    text-align: center;
-}
-
-.ml-5 {
-    margin-left: 5px;
-}
-
-.ml-20 {
-    margin-left: 5px;
-}

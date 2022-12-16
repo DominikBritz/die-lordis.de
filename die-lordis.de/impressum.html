@@ -15,8 +15,7 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="src/normalize.css">
-  <link rel="stylesheet" href="src/skeleton.css">
+  <link rel="stylesheet" href="src/bootstrap.min.css">
   <link rel="stylesheet" href="src/my.css">
 
   <!-- Favicon
@@ -34,32 +33,31 @@
 <body>
 <!-- Navigation
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row" style="margin-top: 5%">
-      
-      <div class="nine columns" >
-        &nbsp;
-      </div>
-
-      <div class="one column">
-        <a href="index.html" class="navitem"><i class="fa-solid fa-house"></i><span class="ml-5">Home</span></a>
-      </div>
-
-      <div class="one column">
-        <a href="impressum.html" class="navitem"><i class="fa-solid fa-briefcase"></i><span class="ml-5">Impressum</span></a>
-      </div>
-      <div class="one column" >
-        &nbsp;
+  <nav class="navbar navbar-dark navbar-expand-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" >
+            <a class="nav-link" href="index.html"><i class="fa-solid fa-house pe-1"></i>Home</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" href="impressum.html"><i class="fa-solid fa-briefcase pe-1"></i>Impressum</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+  </nav>
 
 
 <!-- Body
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <div class="container">
-        <div class="row">
-            <div class="twelve columns">
+        
+            
                 <p> Angaben gemäß § 5 TMG</p>
                 <p>
                     Dominik Britz<br>
@@ -98,24 +96,21 @@
                     Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
                     Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
                 </p>
-            </div>
-        </div>
-    </div>
-    
+      </div>
+  
     
   <!-- Footer
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row" style="margin-top: 5%">
-      <div class="one-half column">
-        <p>
-          &copy; Die Lordis<br>
-          <a href="mailto:info@dielordis.de">info@die-lordis.de</a>
-        </p>
-      </div>
+  <footer class="fixed-bottom pb-4" >
+    <div class="container">
+      &copy; Die Lordis<br>
+    <a href="mailto:info@dielordis.de">info@die-lordis.de</a>
     </div>
-  </div>
     
-     
+  </footer>
+    
+   <!-- JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="src/bootstrap.min.js"></script>  
 </body>
 </html>
