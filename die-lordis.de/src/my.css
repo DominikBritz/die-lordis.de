@@ -2,6 +2,9 @@
     --bs-body-bg: #121212;
     --bs-body-color: #eee;
     --bs-font-sans-serif: "sans-serif","Arial","Helvetica";
+    --bs-primary: #52796F;
+    --bs-link-color: #52796F;
+    --bs-link-hover-color: #36514a;
 }
 
 .navbar {
@@ -9,3 +12,12 @@
     --bs-navbar-hover-color: #fff;
 }
 
+.btn-custom-primary {
+    color: #eee;
+    background-color: #52796F;
+}
+
+.btn-custom-primary:hover {
+    color: #eee;
+    background-color: #36514a;
+}
