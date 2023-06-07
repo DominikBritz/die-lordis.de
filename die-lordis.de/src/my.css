@@ -23,7 +23,6 @@
     background-color: #36514a;
 }
 
-.mw960 {
-    max-width: 960px;
-    width:100%;
-}
+.container {
+    max-width: 960px !important;
+ }
