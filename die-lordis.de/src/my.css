@@ -48,7 +48,7 @@
 
 @media (max-width: 767.98px) {
     .overlay-logo {
-        max-width: 50px;
+        max-width: 75px;
         height: auto;
     }
 }
@@ -63,7 +63,7 @@
     }
 
     .overlay-logo {
-        max-width: 75px;
+        max-width: 100px;
         height: auto;
     }
 }
