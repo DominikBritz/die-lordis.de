@@ -9,7 +9,7 @@
 }
 
 .navbar {
-    --bs-navbar-color: #eee;
+    --bs-navbar-color: rgb(238, 238, 238);
     --bs-navbar-hover-color: #fff;
 }
 
@@ -26,3 +26,59 @@
 .container {
     max-width: 960px !important;
  }
+
+
+.carousel-caption {
+    background-color: rgba(238, 238, 238, 0.3);
+    right: 30%;
+    left: 30%;
+    padding-bottom: 0px;
+}
+
+.carousel-caption h5, .carousel-caption p{
+    font-weight: bold;
+}
+
+
+.overlay-logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+@media (max-width: 767.98px) {
+    .overlay-logo {
+        max-width: 50px;
+        height: auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        /* Increase the size of the icons */
+        width: 60px;
+        height: 60px;
+        background-size: 60px 60px;        
+    }
+
+    .overlay-logo {
+        max-width: 75px;
+        height: auto;
+    }
+}
+
+@media (min-width: 992px) {
+/* Large screens and up */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        /* Increase the size of the icons */
+        width: 80px;
+        height: 80px;
+        background-size: 80px 80px;        
+    }
+    .overlay-logo {
+        max-width: 150px;
+        height: auto;
+    }
+}
