@@ -25,12 +25,14 @@
 
 .btn-instagram {
     color: #fff;
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    background-color: #E1306C;
+    background-image: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 }
 
 .btn-instagram:hover {
     color: #fff;
-    background: linear-gradient(45deg, #d9842e, #cf5d36, #c6233c, #b81f5c, #a9157a);
+    background-color: #c42d60;
+    background-image: linear-gradient(45deg, #d9842e, #cf5d36, #c6233c, #b81f5c, #a9157a);
 }
 
 .container {
