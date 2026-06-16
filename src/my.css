@@ -42,9 +42,20 @@
 
 .carousel-caption {
     background-color: rgba(238, 238, 238, 0.3);
-    right: 30%;
-    left: 30%;
+    right: 0;
+    left: 0;
     padding-bottom: 0px;
+}
+
+.carousel-photo {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.carousel-item img {
+    max-height: 500px;
+    width: auto;
 }
 
 .carousel-caption h5, .carousel-caption p{
@@ -71,7 +82,11 @@
 
     .carousel-caption p{
         font-size: 10px !important;
-        
+
+    }
+
+    .carousel-item img {
+        max-height: 320px;
     }
 }
 
@@ -87,6 +102,10 @@
     .overlay-logo {
         max-width: 100px;
         height: auto;
+    }
+
+    .carousel-item img {
+        max-height: 420px;
     }
 }
 
