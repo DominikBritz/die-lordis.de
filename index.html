@@ -77,12 +77,132 @@
       Als kleine Hausmusik im Jahr 2016 gegründet, musizieren Die Lordis mittlerweile in der klassischen Egerländer 7er-Besetzung. Neben traditioneller Blasmusik mit Polkas, Walzern und Märschen präsentieren die Musikanten aus dem schönen Dorf Wipperfeld im Herzen des Bergischen auch moderne Unterhaltungsmusik und sorgen so auf jeder Festivität für eine energiegeladene Atmosphäre, die jedes Publikum zum Mitfeiern animiert. Wenn auch Sie Bock auf Blasmusik und beste Stimmung auf Ihrer Veranstaltung (Geburtstag, Hochzeit, Firmenfeier, Vereinsabend, Oktoberfest…) haben, sprechen Sie uns an.
     </p>
 
-    <div class="ratio ratio-16x9 mt-4">
-      <video class="rounded" controls playsinline preload="none" poster="images/photos/trailer-poster.webp?v=2">
+    <div class="ratio ratio-16x9 mt-4 trailer" id="trailerBox">
+      <video id="trailer" class="rounded" controls playsinline preload="none" poster="images/photos/trailer-poster.webp?v=2">
         <source src="videos/trailer.mp4" type="video/mp4">
         Dein Browser unterstützt keine Videos. <a href="videos/trailer.mp4">Trailer herunterladen</a>
       </video>
+      <button type="button" class="trailer-play" id="trailerPlay" aria-label="Trailer abspielen" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="trailer-bar" id="trailerBar" hidden>
+        <button type="button" id="trailerToggle" aria-label="Abspielen / Pause">
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        </button>
+        <input type="range" id="trailerSeek" min="0" max="1000" step="1" value="0" aria-label="Position im Video">
+        <span class="trailer-time" id="trailerTime">0:00</span>
+        <button type="button" id="trailerMute" aria-label="Ton an / aus">
+          <svg class="i-vol" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+          <svg class="i-muted" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4z"/></svg>
+        </button>
+        <button type="button" id="trailerFull" aria-label="Vollbild">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4zm10 0h6v6h-2V6h-4zM4 14h2v4h4v2H4zm14 0h2v6h-6v-2h4z"/></svg>
+        </button>
+      </div>
     </div>
+    <script>
+      // Eigene Player-Steuerung: Firefox blendet seine native Leiste bei Touch nicht
+      // zuverlässig aus und zeigt einen großen Play-Button über dem Video. Ohne JS
+      // bleibt die native Steuerung (controls-Attribut) als Fallback.
+      (function () {
+        var box = document.getElementById('trailerBox');
+        var video = document.getElementById('trailer');
+        var bigPlay = document.getElementById('trailerPlay');
+        var bar = document.getElementById('trailerBar');
+        var toggle = document.getElementById('trailerToggle');
+        var seek = document.getElementById('trailerSeek');
+        var time = document.getElementById('trailerTime');
+        var mute = document.getElementById('trailerMute');
+        var full = document.getElementById('trailerFull');
+        var hideTimer, seeking = false, lastPointer = 'mouse';
+
+        video.controls = false;
+        bigPlay.hidden = false;
+
+        function fmt(sec) {
+          sec = Math.floor(sec || 0);
+          return Math.floor(sec / 60) + ':' + ('0' + sec % 60).slice(-2);
+        }
+        function updateTime() {
+          var d = video.duration || 0;
+          if (!seeking && d) seek.value = Math.round(video.currentTime / d * 1000);
+          time.textContent = fmt(video.currentTime) + ' / ' + fmt(d);
+        }
+        function showBar() {
+          if (!box.classList.contains('started')) return;
+          box.classList.add('bar-visible');
+          clearTimeout(hideTimer);
+          if (!video.paused) hideTimer = setTimeout(function () {
+            if (!seeking && !video.paused) box.classList.remove('bar-visible');
+          }, 2500);
+        }
+        function togglePlay() {
+          if (video.paused) video.play(); else video.pause();
+        }
+
+        bigPlay.addEventListener('click', function () {
+          box.classList.add('started');
+          bar.hidden = false;
+          video.play();
+        });
+        toggle.addEventListener('click', togglePlay);
+
+        // Klick/Tap aufs Video: Maus = Play/Pause; Touch bei verborgener Leiste = nur einblenden
+        var barWasVisible = false;
+        box.addEventListener('pointerdown', function (e) {
+          lastPointer = e.pointerType;
+          barWasVisible = box.classList.contains('bar-visible');
+          showBar();
+        });
+        box.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') showBar(); });
+        video.addEventListener('click', function () {
+          if (!box.classList.contains('started')) return;
+          if (lastPointer === 'mouse' || barWasVisible) togglePlay();
+        });
+
+        seek.addEventListener('input', function () {
+          seeking = true;
+          if (video.duration) video.currentTime = seek.value / 1000 * video.duration;
+          updateTime();
+        });
+        seek.addEventListener('change', function () { seeking = false; showBar(); });
+
+        mute.addEventListener('click', function () {
+          video.muted = !video.muted;
+          box.classList.toggle('is-muted', video.muted);
+        });
+        full.addEventListener('click', function () {
+          if (document.fullscreenElement) document.exitFullscreen();
+          else if (box.requestFullscreen) box.requestFullscreen();
+          else if (box.webkitRequestFullscreen) box.webkitRequestFullscreen();
+          else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen(); // iPhone
+        });
+
+        video.addEventListener('timeupdate', updateTime);
+        video.addEventListener('loadedmetadata', updateTime);
+        video.addEventListener('play', function () {
+          box.classList.add('is-playing');
+          bigPlay.hidden = true;
+          showBar();
+        });
+        video.addEventListener('pause', function () {
+          box.classList.remove('is-playing');
+          clearTimeout(hideTimer);
+          if (video.ended) return;
+          bigPlay.hidden = false;
+          box.classList.add('bar-visible');
+        });
+        video.addEventListener('ended', function () {
+          if (document.fullscreenElement) document.exitFullscreen();
+          box.classList.remove('started', 'bar-visible');
+          bar.hidden = true;
+          seek.value = 0;
+          video.load(); // zurück zum Vorschaubild
+          bigPlay.hidden = false;
+        });
+      })();
+    </script>
 
     <p class="text-center pt-5">
       <a class="btn btn-custom-primary" href="mailto:info@die-lordis.de"><i class="fa-solid fa-envelope fa-xl"></i> Jetzt kontaktieren</a>
