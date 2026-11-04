@@ -31,7 +31,9 @@ No package.json, no bundler, no Node.js. Purely static files.
 │   ├── favicon.png
 │   ├── logo.png
 │   ├── lordis_logo_transparent_500x500.png
-│   └── photos/             # Band member photos (WebP) + group shots
+│   └── photos/             # Band member photos (WebP) + group shots + trailer poster
+├── videos/
+│   └── trailer.mp4         # Band trailer (H.264 720p, faststart)
 └── claude.md               # This file
 ```
 
@@ -42,6 +44,7 @@ No package.json, no bundler, no Node.js. Purely static files.
 2. **Logo** — centered band logo
 3. **Band photo** — group shot (VorDerKirche960.webp)
 4. **About** — band history, music style (Egerländer, polkas, waltzes, modern)
+   - **Trailer** — HTML5 video (videos/trailer.mp4) with poster, 16:9 ratio
 5. **Contact CTA** — mailto button to info@die-lordis.de
 6. **Termine (Events)** — HTML table with upcoming gigs (dates, event names, locations)
 7. **Musiker (Musicians)** — Bootstrap carousel with 8 members and their instruments
